@@ -1,0 +1,14 @@
+
+.basketImg:hover{
+    cursor: pointer;
+    border: 1px solid #504F4F;
+    padding: 4px;
+}
+.basketImg{
+    border: 1px solid white;
+    padding: 4px;
+}
+.basketImgOnClick{
+    background-color: #ff950b ;
+    transition-duration: 0.5s;
+}
