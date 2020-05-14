@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^3.26.15",
     "axios": "^0.19.2",
+    "formik": "^2.1.4",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-card-flip": "^1.0.10",
@@ -17,7 +18,9 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "redux-persist": "^6.0.0",
+    "yup": "^0.28.5"
   },
   "scripts": {
     "start": "react-scripts start",

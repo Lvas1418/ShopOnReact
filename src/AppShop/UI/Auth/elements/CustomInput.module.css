@@ -1,0 +1,12 @@
+.warning{
+    color: red;
+    margin-bottom:15px;
+    box-sizing: border-box;
+    height: 1em;
+}
+.fieldInput{
+    width: 100%;
+}
+.label{
+    color: #ff950b;
+}

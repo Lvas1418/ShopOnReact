@@ -1,7 +1,6 @@
 const initialState = {
     authState: {
-        showAuth: false,
-        message: "",
+        showAuth: false
     }
 };
 
@@ -10,14 +9,14 @@ const auth = (state = initialState, action) => {
         case 'SHOW_AUTH': {
             return {
                 ...state,
-                alertState:{showAlert: true, message: action.reason}
+                authState:{showAuth: true}
             };
             break
         }
         case 'HIDE_AUTH': {
             return {
                 ...state,
-                alertState:{showAlert: false, message: action.reason}
+                authState:{showAuth: false}
             };
             break
         }

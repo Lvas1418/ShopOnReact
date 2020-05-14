@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import styles from "./basket.module.css";
-import {increment, decrement, getTotalSum, actionDeleteProdukt} from './../../Redux/Actions/actionsForBasket'; //'src/AppShop/Redux/Actions/actionsForBasket';
+import {increment, decrement, getTotalSum, actionDeleteProdukt} from '../../Redux/Actions/actionsForBasket'; //'src/AppShop/Redux/Actions/actionsForBasket';
 
 const rowOfTable = (item, dispatch) => {
     const incrementAmount = () => dispatch(increment(item));

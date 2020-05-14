@@ -35,7 +35,7 @@ function App(props) {
     useEffect(() => {
         !props.data.length && props.dispatch(actionGetData(null, dispatch))
     }, []);
-
+console.log("showAuth===", showAuth);
     return (
         <div className="App">
             <Router>
@@ -46,9 +46,10 @@ function App(props) {
                     <Content className={styles.content}>
                         <Switch>
                             <Route path="/" exact>
-
                                 {showPreloader ? <Preloader/> : <ProductList data={props}/>}
                                 {showAlert ? <Alert/> : null}
+                            </Route>
+                            <Route path="/auth">
                                 {showAuth ? <Auth/> : null}
                             </Route>
                             <Route path="/productDelivery">
