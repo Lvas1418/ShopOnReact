@@ -3,6 +3,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect
 } from "react-router-dom";
 import {connect} from 'react-redux'
 import {Layout} from "antd";
@@ -19,7 +20,7 @@ import Auth from "./UI/Auth/auth";
 import styles from './App.module.css';
 import Preloader from "./UI/Preloader/preloader"
 import HeaderMenu from "./UI/Header/header";
-
+import {showAlert as actionShowAlert} from './Redux/Actions/alert';
 import {actionGetData} from './Redux/Actions/actionsFetch';
 
 const {Header, Footer, Content} = Layout;
@@ -31,11 +32,11 @@ function App(props) {
         dispatch,
         showAlert,
         showAuth,
+        isAuthorized
     } = props;
     useEffect(() => {
         !props.data.length && props.dispatch(actionGetData(null, dispatch))
     }, []);
-console.log("showAuth===", showAuth);
     return (
         <div className="App">
             <Router>
@@ -48,8 +49,6 @@ console.log("showAuth===", showAuth);
                             <Route path="/" exact>
                                 {showPreloader ? <Preloader/> : <ProductList data={props}/>}
                                 {showAlert ? <Alert/> : null}
-                            </Route>
-                            <Route path="/auth">
                                 {showAuth ? <Auth/> : null}
                             </Route>
                             <Route path="/productDelivery">
@@ -62,7 +61,10 @@ console.log("showAuth===", showAuth);
                                 <ProductDetails/>
                             </Route>
                             <Route path="/basket">
-                                <Basket/>
+                                {isAuthorized ?
+                                    <Basket/> :
+                                    <Redirect to={{pathname: "/" }}/>
+                                }
                             </Route>
                         </Switch>
                     </Content>
@@ -79,7 +81,8 @@ const mapToProps = (store) => {
         data: store.products.data,
         showPreloader: store.stateOfPreloader.showPreloader,
         showAlert: store.alert.alertState.showAlert,
-        showAuth: store.auth.authState.showAuth
+        showAuth: store.auth.authState.showAuth,
+        isAuthorized: store.auth.authState.isAuthorized
     }
 };
 

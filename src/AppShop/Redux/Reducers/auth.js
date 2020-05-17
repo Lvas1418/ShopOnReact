@@ -1,6 +1,8 @@
 const initialState = {
     authState: {
-        showAuth: false
+        showAuth: false,
+        isAuthorized: false,
+        token:''
     }
 };
 
@@ -9,14 +11,27 @@ const auth = (state = initialState, action) => {
         case 'SHOW_AUTH': {
             return {
                 ...state,
-                authState:{showAuth: true}
+                authState:{showAuth: true, isAuthorized: state.authState.isAuthorized, token: state.authState.token}
             };
             break
         }
         case 'HIDE_AUTH': {
             return {
                 ...state,
-                authState:{showAuth: false}
+                authState:{showAuth: false, isAuthorized: state.authState.isAuthorized, token: state.authState.token}
+            };
+            break
+        }
+        case 'SIGN_IN': {
+            return {
+                ...state,
+                authState:{showAuth: false, isAuthorized: true, token: action.token}
+            };
+            break
+        } case 'SIGN_OUT': {
+            return {
+                ...state,
+                authState:{showAuth: false, isAuthorized: false, token: ''}
             };
             break
         }

@@ -27,7 +27,11 @@
 .form{
     padding: 5%;
 }
-.btnSubmit{
+.btn{
     width: 100%;
     margin-top: 15px;
+    cursor: pointer;
+}
+.fail{
+    color: red;
 }

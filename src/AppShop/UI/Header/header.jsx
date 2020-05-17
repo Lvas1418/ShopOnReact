@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
+
 import styles from './headerCss.module.css';
-import {showAuth} from '../../Redux/Actions/auth';
+import {showAuth, signOut} from '../../Redux/Actions/auth';
+import {showAlert} from "../../Redux/Actions/alert";
+import {App} from "../../firebase";
 
 const HeaderMenu = (store) => {
-    const {lengthArrOfProducts, dispatch} = store;
-    console.log("storeMenu===",store)
+    const {lengthArrOfProducts, dispatch, isAuthorized} = store;
     const [menuHome, selectHome] = useState(false);
     const [menuDelivery, selectDelivery] = useState(false);
     const [menuAbout, selectAbout] = useState(false);
-    const [menuSignIn, selectSignIn] = useState(false);
     const [menuBasket, selectBasket] = useState(false);
 
 
@@ -18,7 +19,6 @@ const HeaderMenu = (store) => {
         selectHome(false);
         selectDelivery(false);
         selectAbout(false);
-        selectSignIn(false);
         selectBasket(false);
 
         switch (event.nativeEvent.target.id) {
@@ -31,9 +31,13 @@ const HeaderMenu = (store) => {
             case 'ABOUT':
                 selectAbout(true);
                 break;
-            case 'SIGN_IN':
-                selectSignIn(true);
-                dispatch(showAuth());
+            case 'AUTH':
+                if (isAuthorized)
+                    App.auth().signOut()
+                        .then(() => dispatch(signOut()))
+                        .catch(error => dispatch(showAlert(`"Sign out" is failed. ${error}`)))
+                else
+                    dispatch(showAuth());
                 break;
             case 'BASKET':
                 selectBasket(true);
@@ -54,13 +58,16 @@ const HeaderMenu = (store) => {
                   className={(menuAbout) ? styles.active : styles.inactive}>
                 ABOUT US
             </Link>
-            <Link onClick={selectMenu} id={"SIGN_IN"} key={"4"} to="/auth"
-                  className={(menuSignIn) ? styles.active : styles.inactive}>
-                SIGN IN
+            <Link onClick={selectMenu} id={"AUTH"} key={"4"} to="/"
+                  className={styles.inactive}>
+                {isAuthorized ? "SIGN OUT" : "SIGN IN"}
             </Link>
             <Link onClick={selectMenu} id={"BASKET"} key={"5"} to="/basket"
                   className={(menuBasket) ? styles.active : styles.inactive}
-                  style={{marginLeft: "100px", visibility: (lengthArrOfProducts) ? "visible" : "hidden"}}>
+                  style={{
+                      marginLeft: "100px",
+                      visibility: (lengthArrOfProducts && isAuthorized) ? "visible" : "hidden"
+                  }}>
                 BASKET
             </Link>
         </nav>
@@ -69,6 +76,7 @@ const HeaderMenu = (store) => {
 const mapToProps = (store) => {
     return {
         lengthArrOfProducts: store.basket.basket.arrOfProducts.length,
+        isAuthorized: store.auth.authState.isAuthorized,
     }
 };
 export default connect(mapToProps)(HeaderMenu);

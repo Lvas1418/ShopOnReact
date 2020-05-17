@@ -5,7 +5,7 @@ import styles from './productDetails.module.css'
 
 const ProductDetails = (props) => {
 
-    const {data, dispatch} = props;
+    const {data, dispatch,isAuthorized} = props;
     const addToBasket = () => dispatch(actionAddProdukt(data));
 
     return (
@@ -27,7 +27,7 @@ const ProductDetails = (props) => {
                         {data.description}
                         {data.description}
                     </p>
-                    <button onClick={addToBasket} className={styles.addToBasketBTN}>
+                    <button onClick={addToBasket} className={isAuthorized ? styles.addToBasketBTN : styles.none}>
                         Add to basket
                     </button>
                 </article>
@@ -36,7 +36,10 @@ const ProductDetails = (props) => {
 };
 
 const mapToProps = (store) => {
-    return {data: store.selectedProduct.selected}
+    return {
+        data: store.selectedProduct.selected,
+        isAuthorized: store.auth.authState.isAuthorized
+    }
 };
 
 export default connect(mapToProps)(ProductDetails);

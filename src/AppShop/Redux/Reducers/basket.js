@@ -1,4 +1,3 @@
-import {showAlert} from './../Actions/alert';
 const initialState = {
     basket: {
         arrOfProducts: [],
@@ -60,7 +59,6 @@ const basket = (state = initialState, action) => {
             break
         }
         case 'ADD_TO_BASKET': {
-           // console.log("state====", state);
             return {
                 ...state,
                 basket: (() => {

@@ -1,12 +1,12 @@
 import React from "react";
 import styles from './alert.module.css';
 import {connect} from "react-redux";
-import {hideAlert} from './../../Redux/Actions/alert.js'
+import {hideAlert} from '../../Redux/Actions/alert'
 
 const Alert = (props) => {
     const {data, dispatch} = props;
     const stopEvent = (e) => e.stopPropagation();
-    const closeAlert = () => dispatch(hideAlert('kjgfhsgdhnsetne bethbethehbzrbaerhbazbawrhgav'));
+    const closeAlert = () => dispatch(hideAlert(''));
     return <section className={styles.background} onClick={stopEvent}>
         <div className={styles.container} onClick={stopEvent}>
             <div className={styles.title}>
