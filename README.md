@@ -7,8 +7,8 @@ https://shop-94362.firebaseapp.com/
 
 For authorization in the application, you can use:
 
--Google account;
--Facebook account;
+- Google account;
+- Facebook account;
 - email: lon@i.ua and password: 111111.
 
 Thank you for your interest and attention.
