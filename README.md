@@ -11,4 +11,6 @@ For authorization in the application, you can use:
 - Facebook account;
 - email: lon@i.ua and password: 111111.
 
+After authorization, you can add goods to the basket and enter it.
+
 Thank you for your interest and attention.
