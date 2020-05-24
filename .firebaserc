@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "shop-94362"
+    "default": "shop-94362",
+    "shopOnReact": "shop-94362"
   }
 }
