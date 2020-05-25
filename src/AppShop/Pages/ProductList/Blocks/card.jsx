@@ -1,12 +1,11 @@
 import React, {useState} from "react";
-import {Card} from "antd";
-import ReactCardFlip from 'react-card-flip';
 import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {actionSelectOneProduct} from "./../../../Redux/Actions/selectOneProduct"
+import ReactCardFlip from 'react-card-flip';
+import {Card} from "antd";
+import styles from './card.module.css';
 
 const {Meta} = Card;
-const CardBlock = (props) => {
+const CardBlockComponent = (props) => {
 
     const {dataItem, selectOne} = props;
     const [isFlipped, changeFlipped] = useState(0);
@@ -15,10 +14,9 @@ const CardBlock = (props) => {
 
     return (
         <ReactCardFlip key={dataItem.id} isFlipped={isFlipped} flipDirection='horizontal'>
-
             <div><Card
                 hoverable
-                style={{width: 240, height: 400, padding: 10}}
+                className={styles.card}
                 cover={<img alt="example" src={dataItem.url} width="240px"/>}
                 onClick={toggleFlipped}
             >
@@ -27,9 +25,8 @@ const CardBlock = (props) => {
             </div>
             <div>
                 <Card
-
                     hoverable
-                    style={{width: 240, height: 400, padding: 10, color: "black"}}
+                    className={styles.card}
                     onClick={toggleFlipped}
                 >
                     <h1>{dataItem.name}</h1>
@@ -41,7 +38,4 @@ const CardBlock = (props) => {
     )
 };
 
-const action = {
-    selectOne: actionSelectOneProduct,
-};
-export default connect(null, action)(CardBlock);
+export default CardBlockComponent;

@@ -1,12 +1,10 @@
 import React, {useEffect} from "react";
-import {connect} from "react-redux";
 import styles from "./basket.module.css";
-import {increment, decrement, getTotalSum, actionDeleteProdukt} from '../../Redux/Actions/actionsForBasket'; //'src/AppShop/Redux/Actions/actionsForBasket';
 
-const rowOfTable = (item,i, dispatch) => {
-    const incrementAmount = () => dispatch(increment(item));
-    const decrementAmount = () => dispatch(decrement(item));
-    const deleteProdukt = () => dispatch(actionDeleteProdukt(item));
+const rowOfTable = (item,i, increment, decrement, actionDeleteProdukt) => {
+    const incrementAmount = () => increment(item);
+    const decrementAmount = () => decrement(item);
+    const deleteProdukt = () => actionDeleteProdukt(item);
 
     return (
         <tr  key={i} className={(item.sum) ? styles.active : styles.inactive}>
@@ -15,23 +13,27 @@ const rowOfTable = (item,i, dispatch) => {
             <td>{item.product.price}</td>
             <td>
                 <div className={styles.amountContainer}>
-                    <button onClick={decrementAmount} style={{color: "black"}}>-</button>
-                    <div style={{width: "20%"}}>{item.amount}</div>
-                    <button onClick={incrementAmount} style={{color: "black"}}>&#43;</button>
+                    <button onClick={decrementAmount} className={styles.blackColor}>-</button>
+                    <div className={styles.amountOfProduct}>{item.amount}</div>
+                    <button onClick={incrementAmount} className={styles.blackColor}>&#43;</button>
                 </div>
             </td>
             <td>{item.sum}</td>
             <td>
-                <button onClick={deleteProdukt} style={{color: "black"}}>&#215;</button>
+                <button onClick={deleteProdukt} className={styles.blackColor}>&#215;</button>
             </td>
         </tr>
     );
 };
 
-const Basket = (props) => {
-    const {data, dispatch} = props;
+const BasketComponent = (props) => {
+    const {data,
+        increment,
+        decrement,
+        getTotalSum,
+        actionDeleteProdukt} = props;
     useEffect(() => {
-        dispatch(getTotalSum);
+        getTotalSum();
     }, []);
     if (data.arrOfProducts.length) {
         return (
@@ -56,7 +58,15 @@ const Basket = (props) => {
                     </tr>
                     </tfoot>
                     <tbody>
-                    {data.arrOfProducts.map((item,i,) => rowOfTable(item,i, dispatch))}
+                    {data.arrOfProducts.map((item,i,) =>
+                        rowOfTable(
+                            item,
+                            i,
+                            increment,
+                            decrement,
+                            actionDeleteProdukt
+                        )
+                    )}
                     </tbody>
                 </table>
             </section>)
@@ -102,9 +112,4 @@ const Basket = (props) => {
     }
 };
 
-const mapToProps = (store) => {
-    return {data: store.basket.basket}
-};
-
-
-export default connect(mapToProps)(Basket);
+export default BasketComponent;

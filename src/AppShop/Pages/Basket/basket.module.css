@@ -28,20 +28,24 @@
 .emptyRow{
     border: none;
 }
-button {
+button{
     margin: 0;
     padding: 0;
     width: 1.5rem;
     height: 1.5rem;
-    color: black;
     text-align: center;
 }
-
-.imgIcon {
+.blackColor{
+    color:black;
+}
+.imgIcon{
     width: 50px;
 }
+.amountOfProduct{
+    width: 20%;
 
-table {
+}
+table{
     display: none;
     width: 70%;
     border: 1px solid;

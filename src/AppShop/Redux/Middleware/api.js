@@ -1,9 +1,10 @@
-import {actionHidePreloader} from '../Actions/actionsForPreloader';
 import {showAlert} from '../Actions/alert';
 import axios from 'axios';
 import apiCall from './../../ApiCall/ApiCall';
 
 const ApiMiddleware = state => next => action => {
+
+    const actionHidePreloader=action.dispatch;
 
     if (action.type === 'API_REQUEST') {
 
@@ -17,7 +18,7 @@ const ApiMiddleware = state => next => action => {
             };
             setTimeout(() => {
                 next(arr);
-                action.dispatch(actionHidePreloader);
+                actionHidePreloader();
             }, 2000);
         };
 

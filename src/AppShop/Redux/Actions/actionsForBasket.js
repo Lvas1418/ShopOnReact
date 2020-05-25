@@ -16,6 +16,6 @@ export const decrement = (product) => ({
     product,
 
 });
-export const getTotalSum = {
+export const getTotalSum = ()=>({
     type: 'GET_TOTAL_SUM'
-};
+});

@@ -6,6 +6,7 @@ import selectedProduct from './selectProduct';
 import basket from './basket';
 import alert from './alert';
 import auth from "./auth";
+import {createReducer} from "../../Helpers/Alert/alert";
 
 const appRedux= combineReducers({
     products,

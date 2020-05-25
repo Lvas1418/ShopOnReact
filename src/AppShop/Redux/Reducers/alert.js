@@ -1,3 +1,6 @@
+import {HIDE_ALERT, SHOW_ALERT} from '../Actions/alert';
+import {createReducer} from '../../Helpers/Alert/alert';
+
 const initialState = {
     alertState: {
         showAlert: false,
@@ -5,27 +8,20 @@ const initialState = {
     }
 };
 
-const alert = (state = initialState, action) => {
-    switch (action.type) {
-
-        case 'SHOW_ALERT': {
-            return {
-                ...state,
-                alertState:{showAlert: true, message: action.reason}
-            };
-            break
+const alertRedusers = {
+    [SHOW_ALERT]: (state = initialState, action) => {
+        return {
+            ...state,
+            alertState: {showAlert: true, message: action.reason}
         }
-        case 'HIDE_ALERT': {
-            return {
-                ...state,
-                alertState:{showAlert: false, message: action.reason}
-            };
-            break
-        }
-        default:
-            return state;
-            break
-
+    },
+    [HIDE_ALERT]: (state = initialState, action) => {
+        return {
+            ...state,
+            alertState: {showAlert: false, message: action.reason}
+        };
     }
 };
+
+const alert = createReducer(initialState, alertRedusers);
 export default alert;

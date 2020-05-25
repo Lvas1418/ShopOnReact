@@ -3,15 +3,12 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import {create} from './AppShop/Redux/index';
-import App from './AppShop/App';
-import * as serviceWorker from './serviceWorker';
+import {create} from 'AppShop/Redux';
+import App from 'AppShop/index';
+import * as serviceWorker from 'serviceWorker.js';
 
-import './index.css';
+import 'index.css';
 import 'antd/dist/antd.css'
-
-
-
 
 const combinedStore=create();
 

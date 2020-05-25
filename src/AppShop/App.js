@@ -8,34 +8,34 @@ import {
 import {connect} from 'react-redux'
 import {Layout} from "antd";
 
-import ProductList from "./Pages/ProductList/index";
-import {ProductDelivery} from "./Pages/Delivery/delivery";
-import AboutCompany from "./Pages/About/about";
-import ProductDetails from "./Pages/ProductDetails/productDeails"
+import ProductList from 'AppShop/Pages/ProductList';
+import {ProductDelivery} from 'AppShop/Pages/Delivery/delivery';
+import AboutCompany from 'AppShop/Pages/About/about';
+import ProductDetails from 'AppShop/Pages/ProductDetails';
 
-import Basket from "./Pages/Basket/basket";
-import Alert from "./UI/Alert/Alert";
-import Auth from "./UI/Auth/auth";
+import Basket from 'AppShop/Pages/Basket';
+import Alert from 'AppShop/UI/Alert/Alert';
+import Auth from 'AppShop/UI/Auth/auth';
 
 import styles from './App.module.css';
 import Preloader from "./UI/Preloader/preloader"
 import HeaderMenu from "./UI/Header/header";
-import {showAlert as actionShowAlert} from './Redux/Actions/alert';
-import {actionGetData} from './Redux/Actions/actionsFetch';
 
 const {Header, Footer, Content} = Layout;
 
-function App(props) {
+function AppComponent(props) {
 
     const {
+        actionGetData,
+        actionHidePreloader,
         showPreloader,
-        dispatch,
         showAlert,
         showAuth,
-        isAuthorized
+        isAuthorized,
+        data: arrOfProducts,
     } = props;
     useEffect(() => {
-        !props.data.length && props.dispatch(actionGetData(null, dispatch))
+        !arrOfProducts.length && actionGetData(null, actionHidePreloader)
     }, []);
     return (
         <div className="App">
@@ -47,7 +47,7 @@ function App(props) {
                     <Content className={styles.content}>
                         <Switch>
                             <Route path="/" exact>
-                                {showPreloader ? <Preloader/> : <ProductList data={props}/>}
+                                {showPreloader ? <Preloader/> : <ProductList/>}
                                 {showAlert ? <Alert/> : null}
                                 {showAuth ? <Auth/> : null}
                             </Route>
@@ -76,14 +76,5 @@ function App(props) {
     );
 }
 
-const mapToProps = (store) => {
-    return {
-        data: store.products.data,
-        showPreloader: store.stateOfPreloader.showPreloader,
-        showAlert: store.alert.alertState.showAlert,
-        showAuth: store.auth.authState.showAuth,
-        isAuthorized: store.auth.authState.isAuthorized
-    }
-};
+export default AppComponent;
 
-export default connect(mapToProps)(App);
