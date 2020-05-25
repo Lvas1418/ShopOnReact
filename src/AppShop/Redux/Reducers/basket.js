@@ -1,3 +1,11 @@
+import {createReducer} from '../../Helpers/creatReducer';
+import {
+    GET_TOTAL_SUM,
+    DELETE_FROM_BASKET,
+    INCREMENT_FOR_AMOUNT,
+    DECREMENT_FOR_AMOUNT,
+    ADD_TO_BASKET
+} from './../Actions/actionsForBasket'
 const initialState = {
     basket: {
         arrOfProducts: [],
@@ -5,9 +13,8 @@ const initialState = {
     }
 };
 
-const basket = (state = initialState, action) => {
-    switch (action.type) {
-        case 'GET_TOTAL_SUM': {
+const basketRedusers =  {
+         [GET_TOTAL_SUM]: (state = initialState, action) =>{
             return {
                 ...state,
                 basket: (() => {
@@ -20,9 +27,8 @@ const basket = (state = initialState, action) => {
                     return {arrOfProducts: [...state.basket.arrOfProducts], totalSum: sum}
                 })()
             };
-            break
-        }
-        case 'INCREMENT_FOR_AMOUNT': {
+        },
+        [INCREMENT_FOR_AMOUNT]: (state = initialState, action) =>{
             return {
                 ...state,
                 basket: (() => {
@@ -39,9 +45,8 @@ const basket = (state = initialState, action) => {
                     return {arrOfProducts: [...state.basket.arrOfProducts], totalSum: state.basket.totalSum}
                 })()
             };
-            break
-        }
-        case 'DECREMENT_FOR_AMOUNT': {
+        },
+        [DECREMENT_FOR_AMOUNT]: (state = initialState, action) =>{
             return {
                 ...state,
                 basket: (() => {
@@ -56,9 +61,8 @@ const basket = (state = initialState, action) => {
                     return {arrOfProducts: [...state.basket.arrOfProducts], totalSum: state.basket.totalSum}
                 })()
             };
-            break
-        }
-        case 'ADD_TO_BASKET': {
+        },
+        [ADD_TO_BASKET]:(state = initialState, action) => {
             return {
                 ...state,
                 basket: (() => {
@@ -90,9 +94,8 @@ const basket = (state = initialState, action) => {
                     return {arrOfProducts: [...state.basket.arrOfProducts], totalSum: +state.basket.totalSum}
                 })()
             };
-            break
-        }
-        case 'DELETE_FROM_BASKET': {
+        },
+        [DELETE_FROM_BASKET]: (state = initialState, action) =>{
             return {
                 ...state,
                 basket: (() => {
@@ -110,12 +113,8 @@ const basket = (state = initialState, action) => {
                     return {arrOfProducts: [...state.basket.arrOfProducts], totalSum: +state.basket.totalSum}
                 })()
             };
-            break
         }
-        default:
-            return state;
-            break
 
-    }
 };
+const basket = createReducer(initialState, basketRedusers);
 export default basket;

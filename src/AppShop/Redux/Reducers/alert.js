@@ -1,5 +1,5 @@
 import {HIDE_ALERT, SHOW_ALERT} from '../Actions/alert';
-import {createReducer} from '../../Helpers/Alert/alert';
+import {createReducer} from '../../Helpers/creatReducer';
 
 const initialState = {
     alertState: {
