@@ -32,7 +32,6 @@ const renderCards = function (el, i, actionAddProdukt, isAuthorized) {
 };
 
 const ProductListComponent = (props) => {
-    console.log("props in product list==", props);
     let {data: arrOfProducts, isAuthorized, actionAddProdukt} = props;
     return (
         <Row gutter={20} type="flex" justify="start">

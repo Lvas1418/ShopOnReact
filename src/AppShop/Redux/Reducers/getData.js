@@ -7,16 +7,9 @@ const getData = (state=[], action) => {
             };
             break
         }
-        case 'GSERVER': {
-            return {
-
-            };
-            break
-        }
         default:
             return state;
             break
-
     }
 };
 export default getData;
