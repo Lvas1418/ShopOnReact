@@ -49,13 +49,13 @@ const BasketComponent = (props) => {
         getTotalSum();
     }, []);
     if (data.arrOfProducts.length) {
-        { setShowEmptyTable(true);}
+        showEmptyTable && setShowEmptyTable(false);
         return (
             <section className={styles.container}>
                 <table>
                     <thead>
                     <tr align={"center"}>
-                        <th></th>
+                        <th> </th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -83,7 +83,7 @@ const BasketComponent = (props) => {
         }, 1000);
         return (
             <section  className={styles.container}>
-                {showEmptyTable && <table /*className={styles.emptyBasket}*/ id={"tableEmptyBasket"} className={(this.id===0)? "k":"kk"}>
+                {showEmptyTable && <table>
                     <thead>
                     <tr align={"center"}>
                         <th>
