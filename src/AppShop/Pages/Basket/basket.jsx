@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./basket.module.css";
 
 const rowOfTable = (item,i, increment, decrement, actionDeleteProdukt) => {
@@ -26,22 +26,36 @@ const rowOfTable = (item,i, increment, decrement, actionDeleteProdukt) => {
     );
 };
 
+
 const BasketComponent = (props) => {
     const {data,
         increment,
         decrement,
         getTotalSum,
         actionDeleteProdukt} = props;
+    const [showEmptyTable, setShowEmptyTable]=useState(false);
+    const createTable = (arr)=>{
+      return   arr.map((item,i,) =>
+            rowOfTable(
+                item,
+                i,
+                increment,
+                decrement,
+                actionDeleteProdukt
+            )
+        )
+    }
     useEffect(() => {
         getTotalSum();
     }, []);
     if (data.arrOfProducts.length) {
+        showEmptyTable && setShowEmptyTable(false);
         return (
             <section className={styles.container}>
                 <table>
                     <thead>
                     <tr align={"center"}>
-                        <th></th>
+                        <th> </th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -58,27 +72,18 @@ const BasketComponent = (props) => {
                     </tr>
                     </tfoot>
                     <tbody>
-                    {data.arrOfProducts.map((item,i,) =>
-                        rowOfTable(
-                            item,
-                            i,
-                            increment,
-                            decrement,
-                            actionDeleteProdukt
-                        )
-                    )}
+                    {createTable(data.arrOfProducts)}
                     </tbody>
                 </table>
             </section>)
     } else {
 
         setTimeout(() => {
-            const element=document.getElementById("tableEmptyBasket");
-            element.style.display="table";
+            setShowEmptyTable(true);
         }, 1000);
         return (
             <section  className={styles.container}>
-                <table className={styles.emptyBasket} id={"tableEmptyBasket"}>
+                {showEmptyTable && <table>
                     <thead>
                     <tr align={"center"}>
                         <th>
@@ -106,7 +111,7 @@ const BasketComponent = (props) => {
                         </td>
                     </tr>
                     </tbody>
-                </table>
+                </table>}
             </section>
         );
     }

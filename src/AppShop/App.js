@@ -48,8 +48,8 @@ function AppComponent(props) {
                         <Switch>
                             <Route path="/" exact>
                                 {showPreloader ? <Preloader/> : <ProductList/>}
-                                {showAlert ? <Alert/> : null}
-                                {showAuth ? <Auth/> : null}
+                                {showAlert && <Alert/>}
+                                {showAuth && <Auth/> }
                             </Route>
                             <Route path="/productDelivery">
                                 <ProductDelivery/>
