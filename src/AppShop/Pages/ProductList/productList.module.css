@@ -7,14 +7,17 @@
 .basketImg{
     border: 1px solid white;
     padding: 4px;
+    transition: background-color 400ms;
+    transition-timing-function: step-start;
 }
+.basketImg:active{
+    background-color: #ff950b;
+}
+
 .none{
     display: none;
 }
-.basketImgOnClick{
-    background-color: #ff950b ;
-    transition-duration: 0.5s;
-}
+
 .pPrice{
     margin: 0;
 }

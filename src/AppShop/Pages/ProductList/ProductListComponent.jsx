@@ -4,19 +4,10 @@ import styles from "./productList.module.css";
 import CardBlock from './Blocks/index';
 import basketUrl from './basket.png';
 
-const flashEffect = (e) => {
-    const element = document.getElementById(e.nativeEvent.target.id);
-    element.classList.toggle(styles.basketImgOnClick);
-    setTimeout(() => {
-        element.classList.toggle(styles.basketImgOnClick)
-    }, 800);
-};
-
 const renderCards = function (el, i, actionAddProdukt, isAuthorized) {
 
-    const addToBasket = (event) => {
+    const addToBasket = () => {
         actionAddProdukt(el);
-        flashEffect(event);
     };
 
     return <Col xs={20} sm={10} md={8} lg={6} xl={6} className={styles.col}  key={i}>
