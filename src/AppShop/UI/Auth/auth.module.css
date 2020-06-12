@@ -1,0 +1,37 @@
+.background {
+    background: rgba(255, 255, 255, 0.8);
+    width: 100vW;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.container {
+    position: relative;
+    background-color: black;
+    border: 1px solid black;
+    min-width: 200px;
+    width: 30%;
+}
+.title{
+    width: 100%;
+    text-align: center;
+    background: #ffffff;
+}
+.form{
+    padding: 5%;
+}
+.btn{
+    width: 100%;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.fail{
+    color: red;
+}

@@ -1,0 +1,36 @@
+
+.basketImg:hover{
+    cursor: pointer;
+    border: 1px solid #504F4F;
+    padding: 4px;
+}
+.basketImg{
+    border: 1px solid white;
+    padding: 4px;
+    transition: background-color 400ms;
+    transition-timing-function: step-start;
+}
+.basketImg:active{
+    background-color: #ff950b;
+}
+
+.none{
+    display: none;
+}
+
+.pPrice{
+    margin: 0;
+}
+.priceBlock {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: black;
+    background: white;
+    width: 240px;
+    padding: 10px
+}
+.col{
+margin-top: 30px;
+}

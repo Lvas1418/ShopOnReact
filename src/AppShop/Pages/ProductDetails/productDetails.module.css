@@ -1,0 +1,30 @@
+.addToBasketBTN {
+    width: auto;
+    align-self: flex-end;
+    height: 3em;
+    padding: 0.5em;
+}
+.none{
+    display: none;
+}
+.containerForImg{
+    width: 30%;
+}
+.description {
+    text-indent: 1.5em;
+    text-align: justify;
+}
+.imgOfProduct{
+    width: 100%;
+    border: 1px solid black;
+}
+.article{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.rightSide{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,21 @@
+.active {
+    color: #ff950b;
+}
+
+a.active:hover {
+    color: #ff950b;
+}
+
+.inactive {
+    color: #ffffff;
+}
+
+a.inactive:hover {
+    color: #ff950b;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    min-width: 600px;
+}
